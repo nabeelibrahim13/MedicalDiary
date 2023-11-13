@@ -24,28 +24,9 @@ users = [
     },
 ]
 
-
-
-
-
 @app.route('/')
 def index():
     return render_template("about.html")
-
-# @app.route('/signup', methods=['GET','POST'])
-# def signup(methods=['POST']):
-#     return render_template("signup.html")
-#     # request_data = request.get_json()
-#     # new_user = {
-#     #             'name': request_data['name'],
-#     #             'email': request_data['email'],
-#     #             'password': request_data['password']
-#     #             }
-#     # users.append(new_user)
-#     return render_template("signup.html")
-
-
-
 global new
 
 @app.route('/upload_image_route', methods=['POST'])
@@ -139,7 +120,7 @@ def upload_pdf():
     data = {'message' : a}
     return render_template('show.html', data = data)
 
-#@app.route('/summary_route', methods=['POST'])
+
 def get_summary(new):
 
     g4f.debug.logging = True  # Enable logging
@@ -193,33 +174,9 @@ def signinmethod():
     #return jsonify({'message': 'failure'})
     data = {'message' : 'failure'}
     return render_template('signinstatus.html', data = {'message' : 'failure'} )
-#return render_template('index.html', prediction_text=str(result))
-
-
-@app.route('/showusers', methods=['GET'])
-def showusers():
-    un=[]
-    ue=[]
-    cnt = 0
-    for user in users:
-        cnt+=1
-        uname = user['name']
-        un.append(uname)
-        uemail = user['email']
-        ue.append(uemail)
-    #abc = ['a','b','c']
-    #cnt = len(a)
-    #return jsonify({'users': users})
-    return render_template('users.html', users = users, un = un, ue = ue, cnt = cnt)
 
 
 
-    # for a in users:
-    #     n = a.name
-    #     e = a.email
-    #     data1 = {'name' : n}
-    #     data2 = {'email' : e}
-    #     return render_template('users.html', data1 = {'name' : n}, data2 = {'email' : e})
 
 if __name__ == "__main__":
     app.run(debug=True)
